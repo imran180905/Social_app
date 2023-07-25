@@ -6,8 +6,11 @@ import like from "../asset/likes.png";
 import bookmark from "../asset/bookmark.png";
 import save from "../asset/save-instagram.png";
 import share from"../asset/share.png";
+import posts from "./api/api";
 
-const Posts = () => {
+const Posts = (singleData) => {
+    console.log(singleData)
+    
     return ( <div className="flex justify-center mt-6">
         <div className="min-w-[600px]">
 
