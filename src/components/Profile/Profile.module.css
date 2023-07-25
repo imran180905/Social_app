@@ -1,0 +1,118 @@
+.header {
+    display: grid;
+    justify-content: center;
+    
+}
+.headerSection {
+    display: flex;
+    gap: 100px;
+    margin-top: 50px;
+}
+.img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+.imageSection {
+    border-radius: 50%;
+    background: #C4C4C4;
+    /* position: fixed; */
+}
+.userName {
+    color: #000;
+font-family: Roboto;
+font-size: 28px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.editProfile {
+    color: #000;
+font-family: Roboto;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+padding: 7px 11px;
+background: #EFEFEF;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.post p{
+    color: #000;
+    font-family: Roboto;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal; 
+}
+.name {
+    color: #000;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-transform: capitalize;
+}
+.dot {
+    color: #000;
+font-family: Roboto;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+.firstSection {
+    display: flex;
+    gap: 20px;
+   
+}
+.follower {
+    display: flex;
+    gap: 40px;
+    margin: 24px 0;
+}
+.profile {
+    display: grid;
+    /* gap: 24px; */
+}
+.settings {
+    width: 24px;
+    height: 24px;
+}
+.line {
+    background: #EFEFEF;
+    height: 1px;
+    width: auto;
+    display: grid;
+    justify-content: center;
+    margin-top: 45px;
+}
+.postSection {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 19px 0;
+}
+.post {
+    color: #262626;
+font-family: Roboto;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+text-transform: uppercase;
+}
+.noPhotos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+.itemListSection {
+    display: flex;
+    justify-content: center;
+}
