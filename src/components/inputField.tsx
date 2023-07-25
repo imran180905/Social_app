@@ -30,8 +30,7 @@ const InputField: React.FC<InputProps> = ({
         pb-1
         w-full
         text-md
-      text-white
-      bg-neutral-700
+        text-black
         appearance-none
         focus:outline-none
         focus:ring-0
