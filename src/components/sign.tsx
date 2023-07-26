@@ -7,6 +7,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useState } from "react";
 import InputField from "./inputField";
+import { useRouter } from "next/router";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  
+} from 'firebase/auth'
+import { auth } from '../Firebase/firebase';
+
 export default function Sign() {
   const [userName, setUserName] = useState("");
   const [fullName, setFullName] = useState("");
@@ -14,11 +22,52 @@ export default function Sign() {
   const [password, setPassword] = useState("");
   const [variant, setVariant] = useState("login");
 
+  const router = useRouter()
+
   const variantToggle = useCallback((current: any) => {
     setVariant((currentVariant) =>
       currentVariant === "login" ? "register" : "login"
     );
   }, []);
+
+  const handleSignup = async (e: any) => {
+    e.preventDefault();
+
+    if (variant === "register") {
+      const userData = {
+        email: email,
+        password: password,
+        username: userName,
+        full_name: fullName,
+      };
+      
+      console.log("Signup data:", userData);
+      
+      try {
+       router.push('/');
+        return createUserWithEmailAndPassword(auth, email, password
+      );
+
+      } catch (error) {
+        console.log("Error occurred during signup:", error);
+      }
+    } else {
+    const userData = {
+        email: email,
+        password: password,
+      };
+      console.log("Login data:", userData);
+      try {
+        // Sign in the user with the provided email and password
+        router.push('/'); // Redirect to the home page after successful login
+       return signInWithEmailAndPassword(auth, email, password);
+
+      } catch (error) {
+        console.log("Error occurred during login:");
+      }
+    }
+  };
+
   return (
     // <div className="  border-solid border-2 border-indigo-600 bg-gray-100 px-5 w-80 ">
     //   <div className="">
@@ -37,7 +86,7 @@ export default function Sign() {
           <Image className="-ml-72" src={carosol} alt="carosol" />
         </div>
         <div className="flex justify-center">
-          <div className="bg-white bg-opacity-50 px-16 py-16 self-center mt-4 lg:max-w-lg rounded-md w-full">
+          <form onSubmit={handleSignup} className="bg-white bg-opacity-50 px-16 py-16 self-center mt-4 lg:max-w-lg rounded-md w-full">
             <h2 className="text-white text-4xl mb-8 font-semibold">
               {variant === "login" ? "Sign in" : "Register"}
             </h2>
@@ -96,7 +145,7 @@ export default function Sign() {
                 cookies.
               </span>
             </p>
-            <button className="bg-blue-600 text-white rounded-md w-full mt-8 py-3 transition hover:bg-blue-700">
+            <button type="submit"  className="bg-blue-600 text-white rounded-md w-full mt-8 py-3 transition hover:bg-blue-700">
               {variant === "register" ? "Sign up" : "Log in"}
             </button>
             <p className="text-neutral-900 mt-10">
@@ -110,7 +159,7 @@ export default function Sign() {
                 {variant === "register" ? "Log In" : " Create an account"}
               </span>
             </p>
-          </div>
+          </form>
         </div>
       </div>
     </>
