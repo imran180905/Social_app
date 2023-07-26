@@ -45,10 +45,7 @@ export default function Sign() {
       
       try {
        router.push('/');
-        return createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
+        return createUserWithEmailAndPassword(auth, email, password
       );
 
       } catch (error) {
