@@ -8,7 +8,7 @@ import save from "../asset/save-instagram.png";
 import share from"../asset/share.png";
 import posts from "./api/api";
 
-const Posts = (singleData) => {
+const Posts = (singleData: any) => {
     console.log(singleData)
     
     return ( <div className="flex justify-center mt-6">
