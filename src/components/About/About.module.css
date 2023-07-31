@@ -1,0 +1,17 @@
+.selectButton {
+padding: 10px;
+}
+.choice {
+    background: pink;
+    border-radius: 40%;
+    padding: 5px;
+    font-size: 10px;
+    /* min-width: 90px; */
+}
+.modal {
+    display: grid;
+    justify-content: center;
+}
+.outline {
+    border: 1px solid black;
+}

@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Styles from './Profile.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import settings from '../../asset/settings.png'
 import defaultImage from '../../asset/LOGO.png'
+import {auth} from '../../Firebase/firebase'; // Assuming you have a custom hook for Firebase Authentication
 
 export default function ProfileHeader() {
+  const [username, setUsername] = useState('');
+
   return (
     <div className={Styles.header}>
         <div className={Styles.headerSection}>

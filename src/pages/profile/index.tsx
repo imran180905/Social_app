@@ -21,14 +21,26 @@ export default function index({products}: Props) {
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-    const products = await fetch("https://fakestoreapi.com/products").then(
-    (res) => res.json()
+  try {
+    const response = await fetch("https://fakestoreapi.com/products");
     
-  );
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    
+    const products = await response.json();
 
-  return {
-    props: {
-      products,
-    },
-  };
+    return {
+      props: {
+        // products,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return {
+      props: {
+        products: [], // Return an empty array or handle the error as per your requirement
+      },
+    };
+  }
 };
