@@ -1,3 +1,9 @@
+import Sign from "@/components/sign";
+
 export default function SignUp() {
-  return <div>SignUp</div>;
+  return (
+    <div>
+      <Sign />
+    </div>
+  );
 }
