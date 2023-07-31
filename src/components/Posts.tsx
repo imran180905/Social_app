@@ -7,12 +7,38 @@ import bookmark from "../asset/bookmark.png";
 import save from "../asset/save-instagram.png";
 import share from "../asset/share.png";
 import posts from "./api/api";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Link from "next/link";
+import Comments from "./Comments";
 
-const Posts = (singleData) => {
-    console.log(singleData)
-    
-    return ( <div className="flex justify-center mt-6">
-        <div className="min-w-[600px]">
+type singleDataTypes = {
+  id: number;
+  title: string;
+  body: string;
+};
+const Posts = () => {
+  const [data, setData] = useState([]);
+  const [imageUrl, setImageUrl] = useState([]);
+
+  useEffect(() => {
+    // Replace 'YOUR_UNSPLASH_ACCESS_KEY' with your actual access key
+    const accessKey = 'RuvD7IWONnAz-VbvZ8pr5srRMKdNy5NypnB4bm950l4';
+    const apiUrl = `https://api.unsplash.com/photos/?client_id=${accessKey}`;
+
+    axios
+      .get(apiUrl)
+      .then(response => {
+        setImageUrl(response.data);
+        console.log(response.data)
+
+      })
+      .catch(error => {
+        console.error('Error fetching image:', error);
+      });
+  }, []);
+
+console.log(imageUrl,"image");
 
   useEffect(() => {
     axios
@@ -60,6 +86,10 @@ const Posts = (singleData) => {
                 </div>
                 <h1>{singleData.title}</h1>
                 <p>{singleData.body}</p>
+                {/* <Link href='/comments'>
+                  See 99 comments
+                </Link> */}
+                  <Comments id={singleData?.id} body={""} postId={0}/>
               </div>
             )}
           </div>
