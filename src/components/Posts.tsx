@@ -1,21 +1,19 @@
+import axios from "axios";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import Vector from "../asset/Vector.png";
-import options from "../asset/options.png";
-import redheart from "../asset/redheart.png";
 import like from "../asset/likes.png";
-import bookmark from "../asset/bookmark.png";
+import options from "../asset/options.png";
 import save from "../asset/save-instagram.png";
 import share from "../asset/share.png";
-import posts from "./api/api";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import Link from "next/link";
+import SeeMoreText from "./SeeMore";
 import Comments from "./Comments";
 
 type singleDataTypes = {
   id: number;
   title: string;
   body: string;
+  reactions: number;
 };
 const Posts = () => {
   const [data, setData] = useState([]);
@@ -23,22 +21,21 @@ const Posts = () => {
 
   useEffect(() => {
     // Replace 'YOUR_UNSPLASH_ACCESS_KEY' with your actual access key
-    const accessKey = 'RuvD7IWONnAz-VbvZ8pr5srRMKdNy5NypnB4bm950l4';
+    const accessKey = "RuvD7IWONnAz-VbvZ8pr5srRMKdNy5NypnB4bm950l4";
     const apiUrl = `https://api.unsplash.com/photos/?client_id=${accessKey}`;
 
     axios
       .get(apiUrl)
-      .then(response => {
+      .then((response) => {
         setImageUrl(response.data);
-        console.log(response.data)
-
+        console.log(response.data);
       })
-      .catch(error => {
-        console.error('Error fetching image:', error);
+      .catch((error) => {
+        console.error("Error fetching image:", error);
       });
   }, []);
 
-console.log(imageUrl,"image");
+  console.log(imageUrl, "image");
 
   useEffect(() => {
     axios
@@ -51,7 +48,7 @@ console.log(imageUrl,"image");
         console.log(error);
       });
   }, []);
-//   console.log(data, ".......");
+  //   console.log(data, ".......");
 
   return (
     <>
@@ -84,12 +81,15 @@ console.log(imageUrl,"image");
                     <Image src={save} alt="" height="24" />
                   </div>
                 </div>
-                <h1>{singleData.title}</h1>
-                <p>{singleData.body}</p>
-                {/* <Link href='/comments'>
-                  See 99 comments
-                </Link> */}
+                <div className="px-2 md:px-4 py-3 md:py-6 w-full text-slate-800 ">
+                  <h1 className="font-semibold text-1xl font-serif">
+                    {singleData?.title}
+                  </h1>
+                  {/* <p >{singleData?.body}</p> */}
+                  <p className="font-weight-bold">{singleData.reactions} likes</p>
+                  <SeeMoreText text={singleData?.body} />
                   <Comments id={singleData?.id} body={""} postId={0}/>
+                </div>
               </div>
             )}
           </div>

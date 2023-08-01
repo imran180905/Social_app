@@ -7,7 +7,7 @@ const HomePage = () => {
     return ( <Layout>
         <div className="grid grid-cols-3 gap-8">
             <div></div>
-            <div>
+            <div >
                 <Posts/>
             
             </div>
