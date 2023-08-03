@@ -141,7 +141,7 @@ export default function Comments({id, title, image, onSubmit}:singleDataTypes) {
         >
         <div className={Styles.box}>   
         <div className={Styles.imgSection}>
-          <Image className={Styles.img} src={image} alt='' width={100} height={100}/>
+          <Image className={Styles.img} src={image} alt='' width={500} height={500}/>
         </div>
         <Box >
         <Typography id="modal-modal-title" component="div" className={Styles.modalDetailsSection} >
