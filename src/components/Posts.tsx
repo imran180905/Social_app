@@ -7,7 +7,10 @@ import options from "../asset/options.png";
 import save from "../asset/save-instagram.png";
 import share from "../asset/share.png";
 import SeeMoreText from "./SeeMore";
-import Comments from "./Comments";
+import Comments from "./Comment/Comments";
+import carosol from "../asset/carousel 2.png";
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+
 
 type singleDataTypes = {
   id: number;
@@ -19,6 +22,7 @@ const Posts = () => {
   const [data, setData] = useState([]);
   const [imageUrl, setImageUrl] = useState([]);
 
+
   useEffect(() => {
     // Replace 'YOUR_UNSPLASH_ACCESS_KEY' with your actual access key
     const accessKey = "RuvD7IWONnAz-VbvZ8pr5srRMKdNy5NypnB4bm950l4";
@@ -27,49 +31,47 @@ const Posts = () => {
     axios
       .get(apiUrl)
       .then((response) => {
-        setImageUrl(response.data);
-        console.log(response.data);
+        setImageUrl(response.data.map((image: any) => image.urls.regular));
       })
       .catch((error) => {
-        console.error("Error fetching image:", error);
+        console.error('Error fetching image:', error);
       });
   }, []);
 
-  console.log(imageUrl, "image");
 
   useEffect(() => {
     axios
       .get("https://dummyjson.com/posts")
       .then((response) => {
         setData(response.data.posts);
-        // console.log(response.data.posts);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  //   console.log(data, ".......");
+
+    const handleSubmitComment = (formData: { singleComment: string }) => {
+      // Handle your form submission logic here, e.g., sending the comment to the server
+      console.log('Submitted comment:', formData.singleComment);
+    };
 
   return (
     <>
-      {data.map((singleData: singleDataTypes) => (
+      {data.map((singleData: singleDataTypes,  index: number) => (
         <div key={singleData.id}>
           <div className="flex justify-center mt-6">
             {singleData && (
               <div className="min-w-[600px] bg-white">
                 <div className="flex items-center place-content-between bg-white p-4  ">
                   <div className="flex space-x-2">
-                    <Image src={Vector} alt="" />
-                    <div>name</div>
+                  <div className='userLogoSection'><Image src={carosol} className='userLogo' alt=''/></div>
                   </div>
                   <div className="flex">
-                    <Image src={options} alt="" />
-                    <Image src={options} alt="" />
-                    <Image src={options} alt="" />
+                  <MoreHorizIcon/>
                   </div>
                 </div>
                 <div className="h-[600px]">
-                  {/* <Image src={imageUrl} alt="" width={300} height={300}/> */}
+                   <Image src={imageUrl[index]} alt="" className="new" width="600" height="100"/>
                 </div>
                 <div className="flex items-center place-content-between bg-white p-4">
                   <div className="flex space-x-2">
@@ -88,13 +90,18 @@ const Posts = () => {
                   {/* <p >{singleData?.body}</p> */}
                   <p className="font-weight-bold">{singleData.reactions} likes</p>
                   <SeeMoreText text={singleData?.body} />
-                  <Comments id={singleData?.id} body={""} postId={0}/>
+                  <Comments id={singleData?.id} body={""} postId={0} title={singleData?.title} image={imageUrl[index]} onSubmit={handleSubmitComment} />
+ 
+                  <div >
+                  
+                  </div>
                 </div>
               </div>
             )}
           </div>
         </div>
       ))}
+      
     </>
   );
 };

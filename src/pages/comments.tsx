@@ -1,4 +1,4 @@
-import Comments from '@/components/Comments'
+import Comments from '@/components/Comment/Comments'
 import React from 'react'
 
 export default function comments() {

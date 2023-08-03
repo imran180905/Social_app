@@ -9,3 +9,24 @@ body {
 /* .input {
   @apply block rounded-md px-6 pt-6 pb-1 w-full text-md text-white bg-neutral-700 appearance-none focus:outline-none focus:ring-0 peer invalid:border-b-1;
 } */
+.new {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+.userLogoSection {
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.userLogo {
+  display: grid;
+  object-fit: cover;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+.border {
+  outline: none;
+  border: none;
+}

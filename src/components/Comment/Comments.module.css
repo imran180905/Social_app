@@ -1,0 +1,94 @@
+.commentShow {
+    color: rgb(127, 125, 125);
+}.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vw;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 24;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.imgSection {
+    min-width: 100%;
+    min-height: 100%;
+    background: black;
+}
+.img {
+    width: 100% !important;
+    height: 100% !important; 
+}
+
+.followButton {
+    color: rgb(64, 180, 215);
+}
+.userFirstSection {
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: space-between;
+}
+.modalDetailsSection {
+    padding: 0 20px;
+    padding-top: 20px;
+}
+.line {
+    height: 1px;
+    background: #d7d7d7;
+    width: 50%;
+    position: absolute;
+    right: 0px;
+}
+.vector {
+    display: flex;
+    justify-content: space-between;
+}
+.singleVector {
+    display: flex;
+    gap: 15px;
+    padding: 20px 0;
+}
+.last {
+    margin-top: 245px;
+}
+.commentSection {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    /*gap: 10px; */
+}
+.comment {
+    display: flex;
+    
+    font-size: 14px;
+}
+.form {
+    display: flex;
+    justify-content: space-between;
+}
+.title {
+    font-size: 20px;
+}
+.body {
+    font-size: 13px;
+}
+.userComment {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    align-items: center;
+}
+.userLogoSection {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+.userLogo {
+    display: grid;
+    object-fit: cover;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
