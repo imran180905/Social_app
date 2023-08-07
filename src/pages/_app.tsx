@@ -2,6 +2,10 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast';
 
+
+if(process.env.NODE_ENV === 'development'){
+  require('../mocks/browser')
+}
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>

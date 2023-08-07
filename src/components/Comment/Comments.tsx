@@ -17,9 +17,9 @@ import { LuSend } from 'react-icons/lu';
 import { FiHeart } from 'react-icons/fi';
 
 type singleDataTypes = {
-  id: number;
+  id: string;
   body: string;
-  postId: number;
+  postId: string;
   title: string;
   image: string; 
   onSubmit: (formData: { singleComment: string }) => void;

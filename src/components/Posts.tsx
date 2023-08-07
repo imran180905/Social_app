@@ -12,9 +12,11 @@ import carosol from "../asset/carousel 2.png";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 
 type singleDataTypes = {
-  id: number;
-  title: string;
-  body: string;
+  userId:string,
+  id: string,
+  caption:string,
+  username:string,
+  imageUrl:string,
   reactions: number;
 };
 const Posts = () => {
@@ -22,32 +24,36 @@ const Posts = () => {
   const [imageUrl, setImageUrl] = useState([]);
 
   useEffect(() => {
-    // Replace 'YOUR_UNSPLASH_ACCESS_KEY' with your actual access key
-    const accessKey = "RuvD7IWONnAz-VbvZ8pr5srRMKdNy5NypnB4bm950l4";
-    const apiUrl = `https://api.unsplash.com/photos/?client_id=${accessKey}`;
+    const apiUrl ='/api/posts' ;
 
-    axios
-      .get(apiUrl)
-      .then((response) => {
-        setImageUrl(response.data.map((image: any) => image.urls.regular));
-        console.log(response.data?.urls);
-      })
-      .catch((error) => {
-        console.error("Error fetching image:", error);
-      });
+    fetch(apiUrl)
+    .then((res)=> res.json())
+    .then(data=> {setData(data);
+    console.log(data);})
+    .catch((error)=> console.log(error))
+
+    // axios
+    //   .get(apiUrl)
+    //   .then((response) => {
+    //     setImageUrl(response.data.map((image: any) => image.urls.regular));
+    //     console.log(response.data?.urls);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error fetching image:", error);
+    //   });
   }, []);
 
-  useEffect(() => {
-    axios
-      .get("https://dummyjson.com/posts")
-      .then((response) => {
-        setData(response.data.posts);
-        console.log(response.data.posts);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("https://dummyjson.com/posts")
+  //     .then((response) => {
+  //       setData(response.data.posts);
+  //       console.log(response.data.posts);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
   //   console.log(data, ".......");
 
   const handleSubmitComment = (formData: { singleComment: string }) => {
@@ -65,13 +71,14 @@ const Posts = () => {
                 <div className="flex items-center place-content-between bg-white p-4  ">
                   <div className="flex space-x-2">
                   <div className='userLogoSection'><Image src={carosol} className='userLogo' alt=''/></div>
+                  <h1>{singleData.username}</h1>
                   </div>
                   <div className="flex">
                   <MoreHorizIcon/>
                   </div>
                 </div>
                 <div className="h-[600px]">
-                <Image src={imageUrl[index]} alt="" className="new" width="600" height="100"/>
+                <Image src={singleData.imageUrl} alt="" className="new" width="600" height="100"/>
                 </div>
                 <div className="flex items-center place-content-between bg-white p-4">
                   <div className="flex space-x-2 ">
@@ -85,15 +92,13 @@ const Posts = () => {
                   </div>
                 </div>
                 <div className="px-2 md:px-4 py-3 md:py-6 w-full text-slate-800 ">
-                  <h1 className="font-semibold text-1xl font-serif">
-                    {singleData?.title}
-                  </h1>
+                  
                   {/* <p >{singleData?.body}</p> */}
                   <p className="font-weight-bold">
                     {singleData.reactions} likes
                   </p>
-                  <SeeMoreText text={singleData?.body} />
-                  <Comments id={singleData?.id} body={""} postId={0} title={singleData?.title} image={imageUrl[index]} onSubmit={handleSubmitComment} />
+                  <SeeMoreText text={singleData?.caption} />
+                  <Comments id={singleData?.id} body={""} postId={"0"} title={singleData?.caption} image={imageUrl[index]} onSubmit={handleSubmitComment} />
                 </div>
               </div>
             )}
