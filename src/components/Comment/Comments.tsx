@@ -54,7 +54,7 @@ export default function Comments({id, title, image, onSubmit}:singleDataTypes) {
       setComment(filteredComments)
       //const pp = data?.filter((comment: singleDataTypes) => comment?.postId === id)
 
-    },[data])
+    },[])
 
     // Function to check if at least one letter is typed
   const isLetterTyped = (text: string) => {

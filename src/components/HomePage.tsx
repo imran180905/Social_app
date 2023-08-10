@@ -1,20 +1,15 @@
 import { useEffect, useState } from "react";
 import Layout from "./Layout";
 import Posts from "./Posts";
-import axios from 'axios';
 import Image from "next/image";
 import LOGO from "../asset/LOGO.png";
 import homeActive from "../asset/home-active.png";
 import Vector from "../asset/Vector.png";
 import trends from "../asset/likes.png";
-import add from "../asset/add.png";
-import likes from "../asset/likes.png";
 import search from "../asset/search.png";
 import Link from "next/link";
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
-import Modal from "@mui/material/Modal";
-
-import { Box, Typography } from "@mui/material";
+import profilepic from "../asset/profilepic.jpeg";
 import CreateModal from "./createModal";
 
 const HomePage = () => {
@@ -47,7 +42,7 @@ const HomePage = () => {
                 <Image src={Vector} alt=""/>
                 <Image src={trends} alt=""/>
                 <button onClick={()=>{setModal('modal1')}}><AddBoxOutlinedIcon/></button>
-                <Image src={likes} alt=""/>
+                <div className="rounded-full cursor-pointer"><Link href="/profile"><Image className="rounded-full" src={profilepic} alt="" width={22}/></Link></div>
                 
             </div>
         </div>
