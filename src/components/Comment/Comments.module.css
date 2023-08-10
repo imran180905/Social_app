@@ -1,6 +1,7 @@
 .commentShow {
     color: rgb(127, 125, 125);
-}.box {
+}
+.box {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -20,6 +21,7 @@
 .img {
     width: 100% !important;
     height: 100% !important; 
+    object-fit: cover;
 }
 
 .followButton {
@@ -33,6 +35,10 @@
 .modalDetailsSection {
     padding: 0 20px;
     padding-top: 20px;
+
+    height: 90vh;
+    display: grid;
+    grid-template-rows: 47px 409px 1fr;
 }
 .line {
     height: 1px;
@@ -51,7 +57,7 @@
     padding: 20px 0;
 }
 .last {
-    margin-top: 245px;
+    /* margin-top: 245px; */
 }
 .commentSection {
     display: flex;
@@ -91,4 +97,14 @@
     border-radius: 50%;
     width: 30px;
     height: 30px;
+}
+.middleSection {
+    height: 424px;
+}
+.scrollableContainer {
+    max-height: 431px; /* Set the desired height for the container */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds container height */
+  }
+.commentsContainer {
+   height: 100vh;
 }

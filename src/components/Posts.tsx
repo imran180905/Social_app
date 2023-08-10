@@ -10,6 +10,13 @@ import Comments from "./Comment/Comments";
 import SeeMoreText from "./SeeMore";
 import carosol from "../asset/carousel 2.png";
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import ToggleModal from "./Post/ToggleModal";
+import React from "react";
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import { headers } from "next/dist/client/components/headers";
 
 type singleDataTypes = {
   userId:string,
@@ -19,12 +26,40 @@ type singleDataTypes = {
   imageUrl:string,
   reactions: number;
 };
+
 const Posts = () => {
   const [data, setData] = useState([]);
-  const [imageUrl, setImageUrl] = useState([]);
+  const [selectedPostId, setSelectedPostId] = useState<string | null>(null);
+  const [submittedComments, setSubmittedComments] = useState<string[]>([]);
+
+  const [open, setOpen] = useState(false);
+  const [commentModalOpen, setCommentModalOpen] = useState(false)
+  const handleModalOpen = (id: any) => {
+    setSelectedPostId(id)
+ 
+    setCommentModalOpen(true)
+  }
+  const handleModalClose = () => setCommentModalOpen(false);
+  let refetch = '';
+
+  const handleClose = () => setOpen(false);
+  
+  const handleToggleModal = (id: any) => {
+   setSelectedPostId(id)
+
+    setOpen(true);
+
+  }
+  const handleToggleModal2 = (id: any) => {
+    setSelectedPostId(id)
+   
+
+      setOpen(true);
+  }
 
   useEffect(() => {
     const apiUrl ='/api/posts' ;
+    
 
     fetch(apiUrl)
     .then((res)=> res.json())
@@ -41,26 +76,14 @@ const Posts = () => {
     //   .catch((error) => {
     //     console.error("Error fetching image:", error);
     //   });
-  }, []);
+  }, [refetch]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("https://dummyjson.com/posts")
-  //     .then((response) => {
-  //       setData(response.data.posts);
-  //       console.log(response.data.posts);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
-  //   console.log(data, ".......");
-
-  const handleSubmitComment = (formData: { singleComment: string }) => {
+    const handleSubmitComment = (formData: { singleComment: string }) => {
     // Handle your form submission logic here, e.g., sending the comment to the server
-    console.log('Submitted comment:', formData.singleComment);
+    // console.log('Submitted comment:', formData.singleComment);
   };
-
+  
+ 
   return (
     <>
       {data.map((singleData: singleDataTypes,  index: number) => (
@@ -74,17 +97,20 @@ const Posts = () => {
                   <h1>{singleData.username}</h1>
                   </div>
                   <div className="flex">
-                  <MoreHorizIcon/>
+                  <Button  onClick={() => {handleToggleModal(singleData.id)}}>
+                    <MoreHorizIcon style={{color: 'gray'}} />
+                    
+                  </Button>
                   </div>
                 </div>
                 <div className="h-[600px]">
                 <Image src={singleData.imageUrl} alt="" className="new" width="600" height="100"/>
                 </div>
                 <div className="flex items-center place-content-between bg-white p-4">
-                  <div className="flex space-x-2 ">
+                  <div className="flex space-x-2 " style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                    
                     <FiHeart size={30}/>
-                    <BsChat size={30} />
+                    <button style={{color: 'black'}} onClick={() => handleModalOpen(singleData.id)}><BsChat size={30} /></button>
                     <BsSend size={30} />
                   </div>
                   <div>
@@ -98,13 +124,33 @@ const Posts = () => {
                     {singleData.reactions} likes
                   </p>
                   <SeeMoreText text={singleData?.caption} />
-                  <Comments id={singleData?.id} body={""} postId={"0"} title={singleData?.caption} image={imageUrl[index]} onSubmit={handleSubmitComment} />
+                  {submittedComments.length > 0 && <button onClick={() => handleModalOpen(singleData.id)}>view all {submittedComments.length} comments</button>}
+                  
+                  
+                  {selectedPostId === singleData.id && (
+                  <Comments id={singleData?.id} body={""} postId={"0"} title={singleData?.caption} 
+                  image={singleData.imageUrl}
+                  onSubmit={handleSubmitComment}
+                  username={singleData.username}
+                  handleToggleModal={handleToggleModal}
+                  handleOpen={() => handleModalOpen(singleData.id)} handleClose={handleModalClose}        
+                  open={commentModalOpen}
+                  // handleDeleteModalClose={handleClose}
+                  selectedPostId={singleData.id}
+                  submittedComments={submittedComments}
+                   setSubmittedComments={setSubmittedComments}
+                   handleToggleModal2={handleToggleModal2}
+                  />
+                  )}
+                 
                 </div>
               </div>
             )}
           </div>
         </div>
       ))}
+      <ToggleModal isOpen={open} handleClose={handleClose} selectedPostId={selectedPostId} data={data} setData={setData}/>
+      
     </>
   );
 };

@@ -3,7 +3,7 @@ import Styles from './Profile.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import settings from '../../asset/settings.png'
-import defaultImage from '../../asset/LOGO.png'
+import defaultImage from '../../asset/carousel 2.png'
 import {auth} from '../../Firebase/firebase'; // Assuming you have a custom hook for Firebase Authentication
 
 export default function ProfileHeader() {

@@ -1,0 +1,25 @@
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30vw;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 24;
+    height: 70vh;
+    /* display: grid; */
+    border-radius: 15px;
+}
+.line {
+    height: 1px;
+    background-color: rgb(217, 207, 207);
+    width: 100%;
+}
+.link {
+    padding: 16px ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 380;
+    width: 100%;
+}
