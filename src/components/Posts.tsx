@@ -18,7 +18,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { headers } from "next/dist/client/components/headers";
 
-type singleDataTypes = {
+export type singleDataTypes = {
   userId:string,
   id: string,
   caption:string,

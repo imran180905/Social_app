@@ -39,5 +39,15 @@ console.log(req.params.id)
 
     return res(ctx.json({message: "Delete successfully"}))
   }),
+  rest.get("/api/posts/:id/:postId",(req, res, ctx) => {
+    const postId = req.params.postId;
+    const userId = req.params.id;
+    const postDetails =posts.filter((post) => post.userId === userId && post.id === postId);
+    if (postDetails) {
+      return res(ctx.json(postDetails));
+    } else {
+      return res(ctx.json({ message: "no posts to show" }));
+    }
+  }),
 );
 server.listen();

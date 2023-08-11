@@ -8,16 +8,18 @@ type Props = {
     setUpdatePostId:any;
     setUpdateModal:any;
     updateModal:boolean;
+    updatePostId:string;
+    setPostDetails:any;
   };
 
-  const ItemList = ({ userPosts,setUpdatePostId,setUpdateModal,updateModal }: Props) => {
+  const ItemList = ({ userPosts,setUpdatePostId,updatePostId,setUpdateModal,updateModal,setPostDetails }: Props) => {
     
   return (
     <div className={Styles.itemListSection}>
         <div className="grid" style={{gridTemplateColumns: "1fr 1fr 1fr", gap: '31px'}}>
       {userPosts ? (
          userPosts.map((product,index:number) => (
-          <Item key={index} product={product} setUpdatePostId={setUpdatePostId} setUpdateModal={setUpdateModal} updateModal={updateModal}/>
+          <Item key={index} product={product} setUpdatePostId={setUpdatePostId} updatePostId={updatePostId} setUpdateModal={setUpdateModal} updateModal={updateModal} setPostDetails={setPostDetails}/>
           
         ))
       ) : <div ><h1 className={Styles.noPhotos}>No Photos</h1> </div>}

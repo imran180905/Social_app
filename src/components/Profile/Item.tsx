@@ -9,14 +9,22 @@ type Props = {
     setUpdatePostId:any;
     setUpdateModal:any;
     updateModal:boolean;
+    updatePostId:string;
+    setPostDetails:any;
   };
 
-  const Item: React.FC<Props> = ({ product ,setUpdatePostId,setUpdateModal,updateModal}: Props) => {
+  const Item: React.FC<Props> = ({ product ,setUpdatePostId,updatePostId,setUpdateModal,updateModal,setPostDetails}: Props) => {
     const postImage= product.imageUrl;
     const handleUpdate=(id:string)=>{
       setUpdatePostId(id);
       setUpdateModal(!updateModal);
-     
+      console.log(id)
+      if(id !==""){
+      fetch(`/api/posts/6/${id}`)
+      .then((res)=>res.json())
+      .then((data)=>{setPostDetails(data[0]);
+      console.log(data)})
+      }
 
       
       

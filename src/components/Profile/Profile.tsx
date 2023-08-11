@@ -6,6 +6,8 @@ import ItemList from './ItemList';
 import { GetServerSidePropsContext } from "next";
 import { IProduct } from '@/pages/profile';
 import { dividerClasses } from '@mui/material';
+import Image from "next/image";
+import { singleDataTypes } from '../Posts';
 
   type Props = {
     products: IProduct[];
@@ -15,6 +17,7 @@ import { dividerClasses } from '@mui/material';
     const [userPosts, setUserPosts] = useState([]);
     const [updatePostId, setUpdatePostId] = useState("");
     const [updateModal, setUpdateModal] = useState(false);
+    const [postDetails, setPostDetails] = useState<singleDataTypes>();
     
 
     useEffect(()=>{
@@ -25,6 +28,8 @@ import { dividerClasses } from '@mui/material';
         
       })
     },[])
+
+console.log(postDetails)
   return (
     <div className = "relative">
       <div style={{margin: '0 200px'}}>
@@ -33,11 +38,15 @@ import { dividerClasses } from '@mui/material';
         <GridOnIcon style={{fontSize: '12px'}}/>
         <p className={Styles.post}>posts</p>
       </div>
-      <ItemList userPosts={userPosts} setUpdatePostId={setUpdatePostId} setUpdateModal={setUpdateModal} updateModal={updateModal}/>
+      <ItemList userPosts={userPosts} setUpdatePostId={setUpdatePostId} updatePostId={updatePostId} setUpdateModal={setUpdateModal} updateModal={updateModal} setPostDetails={setPostDetails}/>
       </div>
-      {updateModal && 
-      <div className='absolute top-48 left-48 bg-white p-8'>
-        <h1>update modal</h1>
+      {updateModal && postDetails && 
+      <div className='absolute top-20 left-1/4 bg-white  w-2/4 h-3/4'>
+       
+        <div><Image src={postDetails.imageUrl} alt="" width="500" height="500"/></div>
+        <div></div>
+
+        
 
       </div>}
     </div>
