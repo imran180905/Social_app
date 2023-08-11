@@ -13,7 +13,7 @@ export default function ProfileHeader() {
     <div className={Styles.header}>
         <div className={Styles.headerSection}>
         <div className={Styles.imageSection}>
-            <Image className={Styles.img} src={defaultImage} alt="" width={150} height={150}/>
+            <Image className={Styles.img} src={defaultImage} alt="" />
 
         </div>
         <div className={Styles.profile}>    

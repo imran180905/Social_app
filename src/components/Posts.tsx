@@ -27,8 +27,8 @@ type singleDataTypes = {
   reactions: number;
 };
 
-const Posts = () => {
-  const [data, setData] = useState([]);
+const Posts = ({setData,data}:any) => {
+  // const [data, setData] = useState([]);
   const [selectedPostId, setSelectedPostId] = useState<string | null>(null);
   const [submittedComments, setSubmittedComments] = useState<string[]>([]);
 
@@ -52,30 +52,16 @@ const Posts = () => {
   }
   const handleToggleModal2 = (id: any) => {
     setSelectedPostId(id)
-   
-
       setOpen(true);
   }
 
-  useEffect(() => {
-    const apiUrl ='/api/posts' ;
-    
-
-    fetch(apiUrl)
+  useEffect(() => {  
+    fetch('/api/posts')
     .then((res)=> res.json())
     .then(data=> {setData(data);
     console.log(data);})
     .catch((error)=> console.log(error))
 
-    // axios
-    //   .get(apiUrl)
-    //   .then((response) => {
-    //     setImageUrl(response.data.map((image: any) => image.urls.regular));
-    //     console.log(response.data?.urls);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching image:", error);
-    //   });
   }, [refetch]);
 
     const handleSubmitComment = (formData: { singleComment: string }) => {

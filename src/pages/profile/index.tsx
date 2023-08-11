@@ -3,8 +3,12 @@ import Profile from '../../components/Profile/Profile'
 import React from 'react'
 
 export interface IProduct {
-  id: number;
-  image: string;
+  userId:string,
+  id: string,
+  caption:string,
+  username:string,
+  imageUrl:string,
+  reactions: number;
   }
   type Props = {
     products: IProduct[];

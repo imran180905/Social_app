@@ -1,0 +1,19 @@
+.modalSection {
+
+    display: flex;
+    background: white;
+    padding: 8px;
+    min-width: 100px;
+
+}
+
+.line {
+    height: 1px;
+    background-color: rgb(217, 207, 207);
+    width: 100%;
+}
+/* .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} */
