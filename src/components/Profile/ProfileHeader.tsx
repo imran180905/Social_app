@@ -5,6 +5,7 @@ import Link from 'next/link'
 import settings from '../../asset/settings.png'
 import defaultImage from '../../asset/carousel 2.png'
 import {auth} from '../../Firebase/firebase'; // Assuming you have a custom hook for Firebase Authentication
+import profilepic from '../../asset/profilepic.jpeg'
 
 export default function ProfileHeader() {
   const [username, setUsername] = useState('');
@@ -13,7 +14,7 @@ export default function ProfileHeader() {
     <div className={Styles.header}>
         <div className={Styles.headerSection}>
         <div className={Styles.imageSection}>
-            <Image className={Styles.img} src={defaultImage} alt="" />
+            <Image className={Styles.img} src={profilepic} alt="" />
 
         </div>
         <div className={Styles.profile}>    
